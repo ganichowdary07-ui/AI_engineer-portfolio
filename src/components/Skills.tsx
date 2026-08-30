@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Cpu, Code2, Layout, Database, Brain, Wrench, CheckCircle2, BookOpen } from 'lucide-react';
+import { Cpu, Code2, Database, Brain, Wrench, CheckCircle2, BookOpen } from 'lucide-react';
 import { skillCategories } from '../data/portfolioData';
 
 export const Skills: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<string>('prog');
+  const [activeCategory, setActiveCategory] = useState<string>('prompt-eng');
 
   const getCategoryIcon = (catId: string) => {
     switch (catId) {
+      case 'prompt-eng': return <Brain className="w-4 h-4 text-cyan-400" />;
       case 'prog': return <Code2 className="w-4 h-4" />;
-      case 'frontend': return <Layout className="w-4 h-4" />;
       case 'backend': return <Database className="w-4 h-4" />;
-      case 'ai-analytics': return <Brain className="w-4 h-4" />;
+      case 'ai-analytics': return <Cpu className="w-4 h-4" />;
       case 'tools': return <Wrench className="w-4 h-4" />;
       default: return <Cpu className="w-4 h-4" />;
     }

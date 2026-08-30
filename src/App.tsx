@@ -9,11 +9,11 @@ import { Projects } from './components/Projects';
 import { GitHubSection } from './components/GitHubSection';
 import { Journey } from './components/Journey';
 import { Experience } from './components/Experience';
-import { Testimonials } from './components/Testimonials';
 import { Contact } from './components/Contact';
 import { VisitorCounter } from './components/VisitorCounter';
 import { Footer } from './components/Footer';
 import { ResumeModal } from './components/ResumeModal';
+import { AIAssistant } from './components/AIAssistant';
 
 export function AppContent() {
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
@@ -33,7 +33,6 @@ export function AppContent() {
         <GitHubSection />
         <Journey />
         <Experience />
-        <Testimonials />
         <Contact />
         <VisitorCounter />
       </main>
@@ -46,6 +45,9 @@ export function AppContent() {
         isOpen={resumeModalOpen}
         onClose={() => setResumeModalOpen(false)}
       />
+
+      {/* Gani's AI Assistant & Noupe Bot Widget */}
+      <AIAssistant />
     </div>
   );
 }

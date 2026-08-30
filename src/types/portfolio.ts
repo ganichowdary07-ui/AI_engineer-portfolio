@@ -50,7 +50,7 @@ export interface SkillCategory {
   skills: SkillItem[];
 }
 
-export type ProjectCategory = 'All' | 'Web' | 'AI' | 'Analytics' | 'Other';
+export type ProjectCategory = 'All' | 'Prompt Engineering' | 'AI' | 'Analytics' | 'Other';
 
 export interface ProjectItem {
   id: string;

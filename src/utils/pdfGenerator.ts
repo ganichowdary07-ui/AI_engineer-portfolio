@@ -8,7 +8,7 @@ export const downloadResume = () => {
 ================================================================================
                                GURRAM GANESH
 ================================================================================
-Title: AI Engineer Learner | Web Developer | Analytical Skills Learner
+Title: AI Engineer Learner | Prompt Engineering Learner | Analytical Skills Learner
 Location: Bhimavaram, Andhra Pradesh, India
 Email: ${personalInfo.email}
 Phone: ${personalInfo.phone}
@@ -17,8 +17,8 @@ Status: 3rd Year B.Tech CSE Student (Fresher)
 --------------------------------------------------------------------------------
 CAREER GOAL
 --------------------------------------------------------------------------------
-Aspiring AI Engineer dedicated to mastering Artificial Intelligence, modern web 
-development, data analytics, and computational problem-solving to build 
+Aspiring AI Engineer dedicated to mastering Artificial Intelligence, prompt engineering, 
+data analytics, and computational problem-solving to build 
 intelligent, high-impact digital solutions.
 
 --------------------------------------------------------------------------------
@@ -45,12 +45,16 @@ ${skillCategories.map(cat => `- ${cat.name}: ${cat.skills.map(s => `${s.name} ($
 --------------------------------------------------------------------------------
 FEATURED PROJECTS
 --------------------------------------------------------------------------------
-1. Personal Portfolio Website
-   - Tech: React, TypeScript, Vite, Tailwind CSS, Framer Motion
-   - Role: Designed & Developed modern responsive portfolio showcase with theme switcher & GitHub API integration.
+1. ATS Resume Builder
+   - Tech: Python, Prompt Engineering, Data Analytics
+   - Role: Built ATS keyword optimization & resume scoring engine for hiring automation systems.
 
-2. Food Donation Trust Website
-   - Tech: React, JavaScript, Tailwind CSS, Node.js
+2. Personal AI Portfolio Platform
+   - Tech: Prompt Engineering, AI Assistant Engine, Data Analytics
+   - Role: AI-driven interactive portfolio platform featuring Gani's AI Assistant & GitHub integration.
+
+3. Food Donation Trust Platform
+   - Tech: Python, Prompt Engineering, Social Impact Analytics
    - Role: Social-impact platform created to connect food donors with charitable community welfare initiatives.
 
 --------------------------------------------------------------------------------

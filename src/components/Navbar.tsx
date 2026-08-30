@@ -22,7 +22,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
     { id: 'projects', label: 'Projects' },
     { id: 'journey', label: 'Journey' },
     { id: 'experience', label: 'Experience' },
-    { id: 'testimonials', label: 'Testimonials' },
     { id: 'contact', label: 'Contact' },
   ];
 

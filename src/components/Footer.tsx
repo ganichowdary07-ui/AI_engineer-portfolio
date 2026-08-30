@@ -23,7 +23,7 @@ export const Footer: React.FC = () => {
               <h3 className="text-lg font-bold text-white tracking-tight">{personalInfo.name}</h3>
             </div>
             <p className="text-xs text-slate-400">
-              AI Engineer Learner | Web Developer | Analytical Skills Learner
+              AI Engineer Learner | Prompt Engineering Learner | Analytical Skills Learner
             </p>
             <p className="text-xs font-mono text-cyan-400 italic">
               "Learning. Building. Improving."
@@ -76,7 +76,7 @@ export const Footer: React.FC = () => {
         <div className="pt-6 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p>© 2026 {personalInfo.name}. All rights reserved.</p>
           <p className="flex items-center gap-1">
-            <span>Built with React, TypeScript & Tailwind CSS</span>
+            <span>Powered by AI & Prompt Engineering</span>
           </p>
         </div>
 

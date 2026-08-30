@@ -4,12 +4,12 @@ export const personalInfo: PersonalInfo = {
   name: "Gurram Ganesh",
   professionalTitles: [
     "AI Engineer Learner",
-    "Web Developer",
+    "Prompt Engineering Learner",
     "Analytical Skills Learner"
   ],
   typingTitles: [
     "AI Engineer Learner",
-    "Web Developer",
+    "Prompt Engineering Learner",
     "Data & Analytics Learner",
     "Computer Science Engineering Student"
   ],
@@ -19,10 +19,10 @@ export const personalInfo: PersonalInfo = {
   phone: "+91 7396235685",
   currentStatus: "3rd Year B.Tech CSE Student | Fresher",
   college: "SRKR Engineering College",
-  introText: "Building my skills in Artificial Intelligence, web development, and analytics to create intelligent solutions for real-world problems.",
+  introText: "Building my skills in Artificial Intelligence, prompt engineering, and analytics to create intelligent solutions for real-world problems.",
   aboutBio: [
-    "I am Gurram Ganesh, a third-year Computer Science Engineering student at SRKR Engineering College. I am passionate about Artificial Intelligence, web development, analytical problem-solving, and emerging technologies.",
-    "Currently, I am developing my skills toward becoming an AI Engineer while strengthening my foundations in modern web development and data analytics. I enjoy building practical projects that allow me to transform ideas into useful digital solutions.",
+    "I am Gurram Ganesh, a third-year Computer Science Engineering student at SRKR Engineering College. I am passionate about Artificial Intelligence, prompt engineering, analytical problem-solving, and emerging technologies.",
+    "Currently, I am developing my skills toward becoming an AI Engineer while strengthening my foundations as a prompt engineering learner and data analytics practitioner. I enjoy building practical projects that allow me to transform ideas into useful digital solutions.",
     "My goal is to continuously improve my programming, analytical, and problem-solving abilities and eventually build intelligent applications that solve meaningful real-world problems."
   ],
   socials: {
@@ -67,7 +67,7 @@ export const educationData: EducationItem[] = [
     period: "2024–2028 (Expected)",
     status: "3rd Year",
     grade: "CGPA: 7.4",
-    description: "Focusing on core Computer Science topics including Data Structures, Algorithms, Web Engineering, Database Systems, Artificial Intelligence, and Data Analytics.",
+    description: "Focusing on core Computer Science topics including Data Structures, Algorithms, Prompt Engineering, Database Systems, Artificial Intelligence, and Data Analytics.",
     icon: "GraduationCap"
   },
   {
@@ -96,21 +96,22 @@ export const educationData: EducationItem[] = [
 
 export const skillCategories: SkillCategory[] = [
   {
+    id: "prompt-eng",
+    name: "Prompt Engineering",
+    skills: [
+      { name: "System & Custom Prompting", proficiency: 85, level: "Currently Learning" },
+      { name: "Few-Shot & Chain-of-Thought", proficiency: 82, level: "Currently Learning" },
+      { name: "LLM Context & Role Tuning", proficiency: 80, level: "Currently Learning" },
+      { name: "Prompt Optimization & Evaluation", proficiency: 78, level: "Currently Learning" },
+      { name: "AI Agent Instruction Engineering", proficiency: 75, level: "Currently Learning" }
+    ]
+  },
+  {
     id: "prog",
     name: "Programming",
     skills: [
       { name: "Python", proficiency: 82, level: "Comfortable" },
       { name: "C", proficiency: 75, level: "Comfortable" }
-    ]
-  },
-  {
-    id: "frontend",
-    name: "Frontend Development",
-    skills: [
-      { name: "HTML5", proficiency: 90, level: "Comfortable" },
-      { name: "CSS3", proficiency: 85, level: "Comfortable" },
-      { name: "React", proficiency: 78, level: "Comfortable" },
-      { name: "Tailwind CSS", proficiency: 82, level: "Comfortable" }
     ]
   },
   {
@@ -150,8 +151,8 @@ export const projectsData: ProjectItem[] = [
     title: "ATS Resume Builder",
     description: "An intelligent ATS (Applicant Tracking System) Resume Builder application designed to help job seekers format, optimize, and evaluate resumes for automated hiring systems.",
     longDescription: "Built to streamline resume creation with ATS-friendly layouts, keyword optimization, and real-time structure validation for modern job applications.",
-    category: ["Web", "AI", "Other"],
-    technologies: ["Python", "React", "Tailwind CSS", "Data Analytics"],
+    category: ["Prompt Engineering", "AI"],
+    technologies: ["Python", "Prompt Engineering", "Data Analytics"],
     githubUrl: "https://github.com/ganichowdary07-ui/ATS-Resume-Bilder",
     liveDemoUrl: "#",
     featured: true,
@@ -159,34 +160,34 @@ export const projectsData: ProjectItem[] = [
     highlights: [
       "ATS keyword optimization & formatting engine",
       "Real-time resume scoring and structure analysis",
-      "Clean responsive UI built for job application workflows"
+      "Clean prompt & interface design for job application workflows"
     ]
   },
   {
     id: "proj-2",
-    title: "Personal Portfolio Website",
-    description: "A modern, high-performance personal portfolio website designed to showcase Ganesh's education, skills, projects, career goals, and professional profile.",
-    longDescription: "Built with React and Tailwind CSS, featuring an AI-inspired dark mode aesthetic, scroll-triggered animations, interactive GitHub integration, contact validation, and smooth responsive layout across all device viewports.",
-    category: ["Web", "Other"],
-    technologies: ["React", "Tailwind CSS", "Framer Motion"],
+    title: "Personal AI Portfolio Platform",
+    description: "A modern, high-performance AI portfolio platform designed to showcase Ganesh's education, prompt engineering skills, projects, career goals, and professional profile.",
+    longDescription: "Features an AI-inspired dark mode aesthetic, interactive Gani AI Assistant, GitHub integration, contact validation, and smooth responsive layout.",
+    category: ["Prompt Engineering", "AI"],
+    technologies: ["Prompt Engineering", "AI Assistant", "Data Analytics"],
     githubUrl: "https://github.com/ganichowdary07-ui/ATS-Resume-Bilder",
     liveDemoUrl: "#",
     featured: true,
     image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80",
     highlights: [
       "Dynamic dark/light mode toggle with local storage persistence",
-      "Interactive typing hero with canvas particle tech grid",
+      "Interactive Gani AI Assistant bot with prompt engineering knowledge",
       "GitHub REST API integration for public repositories",
       "Full SEO optimization and automated PDF resume downloader"
     ]
   },
   {
     id: "proj-3",
-    title: "Food Donation Trust Website",
-    description: "A social-impact website created for a charitable food donation initiative, connecting donors with community welfare initiatives.",
-    longDescription: "The website focuses on showcasing food donation activities, community social service, donor outreach, and encouraging people to support food security and community welfare initiatives effectively.",
-    category: ["Web"],
-    technologies: ["React", "Tailwind CSS", "Social Impact"],
+    title: "Food Donation Trust Platform",
+    description: "A social-impact platform created for a charitable food donation initiative, connecting donors with community welfare initiatives.",
+    longDescription: "Focuses on showcasing food donation activities, community social service, donor outreach, and encouraging people to support food security and community welfare initiatives effectively.",
+    category: ["Prompt Engineering", "Other"],
+    technologies: ["Social Impact", "Prompt Tuning", "Community Welfare"],
     githubUrl: "https://github.com/ganichowdary07-ui/ATS-Resume-Bilder",
     liveDemoUrl: "#",
     featured: true,
@@ -218,11 +219,11 @@ export const journeySteps: JourneyStep[] = [
   },
   {
     step: 3,
-    title: "Web Development",
-    description: "Designing and engineering responsive, high-performance web applications using HTML5, CSS3, React, and modern styling libraries.",
-    status: "Completed",
-    technologies: ["HTML5", "CSS3", "React", "Tailwind CSS"],
-    icon: "Globe"
+    title: "Prompt Engineering",
+    description: "Learning to design and engineer effective LLM prompts, persona instruction tuning, few-shot techniques, and chain-of-thought workflows for AI models.",
+    status: "In Progress",
+    technologies: ["System Prompts", "Few-Shot Prompting", "Chain-of-Thought", "Context Tuning"],
+    icon: "Sparkles"
   },
   {
     step: 4,
@@ -256,7 +257,7 @@ export const experienceData: ExperienceCard = {
   description: "Currently building practical experience through academic learning, self-learning, personal projects, and continuous technical development.",
   highlights: [
     "Academic Projects at SRKR Engineering College (3rd Year B.Tech CSE)",
-    "Hands-on web application development with React & Tailwind CSS",
+    "Hands-on AI prompt engineering learning & LLM instruction optimization",
     "Self-directed learning in Artificial Intelligence, Python data analysis, & Machine Learning",
     "Continuous problem-solving and active participation in coding exercises"
   ]
