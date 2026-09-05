@@ -4,6 +4,7 @@ import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle } from 'lucide-rea
 import { personalInfo } from '../data/portfolioData';
 import { GithubIcon, LinkedinIcon } from './icons/SocialIcons';
 import confetti from 'canvas-confetti';
+import { submitContactMessage } from '../services/api';
 
 export const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ export const Contact: React.FC = () => {
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [apiError, setApiError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -44,16 +46,24 @@ export const Contact: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!validate()) return;
 
     setIsSubmitting(true);
+    setApiError(null);
 
-    // Simulate submission delay & celebration
-    setTimeout(() => {
-      setIsSubmitting(false);
+    const result = await submitContactMessage({
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      subject: formData.subject.trim(),
+      message: formData.message.trim()
+    });
+
+    setIsSubmitting(false);
+
+    if (result.success) {
       setSubmitted(true);
       confetti({
         particleCount: 60,
@@ -62,7 +72,16 @@ export const Contact: React.FC = () => {
       });
       setFormData({ name: '', email: '', subject: '', message: '' });
       setErrors({});
-    }, 1000);
+    } else {
+      if (result.errors && result.errors.length > 0) {
+        const fieldErrors: { [key: string]: string } = {};
+        result.errors.forEach(err => {
+          fieldErrors[err.field] = err.message;
+        });
+        setErrors(prev => ({ ...prev, ...fieldErrors }));
+      }
+      setApiError(result.message);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -310,6 +329,13 @@ export const Contact: React.FC = () => {
                     </p>
                   )}
                 </div>
+
+                {apiError && (
+                  <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs flex items-center gap-2">
+                    <AlertCircle className="w-4 h-4 shrink-0" />
+                    <span>{apiError}</span>
+                  </div>
+                )}
 
                 {/* Submit Button */}
                 <button

@@ -1,19 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FolderGit2, ExternalLink, X, CheckCircle2, Layers } from 'lucide-react';
 import { projectsData } from '../data/portfolioData';
 import type { ProjectItem, ProjectCategory } from '../types/portfolio';
 import { GithubIcon } from './icons/SocialIcons';
+import { fetchProjects } from '../services/api';
 
 export const Projects: React.FC = () => {
+  const [projects, setProjects] = useState<ProjectItem[]>(projectsData);
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('All');
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+
+  useEffect(() => {
+    fetchProjects().then(data => {
+      if (data && data.length > 0) {
+        setProjects(data);
+      }
+    });
+  }, []);
 
   const categories: ProjectCategory[] = ['All', 'Prompt Engineering', 'AI', 'Analytics', 'Other'];
 
   const filteredProjects = selectedCategory === 'All'
-    ? projectsData
-    : projectsData.filter(p => p.category.includes(selectedCategory));
+    ? projects
+    : projects.filter(p => p.category.includes(selectedCategory));
 
   return (
     <section id="projects" className="py-20 relative z-10">

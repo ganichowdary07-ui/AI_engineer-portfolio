@@ -1,22 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { Eye, Activity } from 'lucide-react';
+import { recordVisitorHit, fetchVisitorCount } from '../services/api';
 
 export const VisitorCounter: React.FC = () => {
   const [visitorCount, setVisitorCount] = useState<number>(0);
 
   useEffect(() => {
-    // Unique local visitor tracker
-    const key = 'ganesh_portfolio_visit_count';
-    const hasVisited = sessionStorage.getItem('visited_session');
-    let currentCount = parseInt(localStorage.getItem(key) || '142', 10);
+    async function syncVisitorCount() {
+      const key = 'ganesh_portfolio_visit_count';
+      const hasVisited = sessionStorage.getItem('visited_session');
+      let localCount = parseInt(localStorage.getItem(key) || '142', 10);
 
-    if (!hasVisited) {
-      currentCount += 1;
-      localStorage.setItem(key, currentCount.toString());
-      sessionStorage.setItem('visited_session', 'true');
+      if (!hasVisited) {
+        sessionStorage.setItem('visited_session', 'true');
+        localCount += 1;
+        localStorage.setItem(key, localCount.toString());
+        setVisitorCount(localCount);
+
+        const backendCount = await recordVisitorHit();
+        if (backendCount !== null) {
+          setVisitorCount(backendCount);
+          localStorage.setItem(key, backendCount.toString());
+        }
+      } else {
+        setVisitorCount(localCount);
+        const backendCount = await fetchVisitorCount();
+        if (backendCount !== null) {
+          setVisitorCount(backendCount);
+          localStorage.setItem(key, backendCount.toString());
+        }
+      }
     }
 
-    setVisitorCount(currentCount);
+    syncVisitorCount();
   }, []);
 
   return (

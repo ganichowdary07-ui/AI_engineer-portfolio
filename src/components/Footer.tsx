@@ -1,9 +1,13 @@
 import React from 'react';
-import { Mail, ArrowUp } from 'lucide-react';
+import { Mail, ArrowUp, Shield } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 import { GithubIcon, LinkedinIcon } from './icons/SocialIcons';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onOpenAdmin?: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -30,7 +34,7 @@ export const Footer: React.FC = () => {
             </p>
           </div>
 
-          {/* Social Icons */}
+          {/* Social Icons & Admin Trigger */}
           <div className="flex items-center gap-4">
             <a
               href={personalInfo.socials.github}
@@ -59,6 +63,17 @@ export const Footer: React.FC = () => {
             >
               <Mail className="w-5 h-5" />
             </a>
+
+            {onOpenAdmin && (
+              <button
+                onClick={onOpenAdmin}
+                className="p-2.5 rounded-xl glass-panel text-slate-400 hover:text-cyan-400 hover:border-cyan-500/40 transition-all cursor-pointer"
+                title="Admin Portal (Ctrl+Shift+A)"
+                aria-label="Admin Portal"
+              >
+                <Shield className="w-5 h-5" />
+              </button>
+            )}
           </div>
 
           {/* Back to Top */}
@@ -75,9 +90,20 @@ export const Footer: React.FC = () => {
         {/* Bottom Copyright */}
         <div className="pt-6 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p>© 2026 {personalInfo.name}. All rights reserved.</p>
-          <p className="flex items-center gap-1">
+          <div className="flex items-center gap-3">
             <span>Powered by AI & Prompt Engineering</span>
-          </p>
+            {onOpenAdmin && (
+              <>
+                <span>•</span>
+                <button
+                  onClick={onOpenAdmin}
+                  className="hover:text-cyan-400 transition-colors cursor-pointer"
+                >
+                  Admin Login
+                </button>
+              </>
+            )}
+          </div>
         </div>
 
       </div>

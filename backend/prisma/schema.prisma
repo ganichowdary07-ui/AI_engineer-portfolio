@@ -1,0 +1,168 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  role      String   @default("ADMIN")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model PersonalInfo {
+  id                 String         @id @default(uuid())
+  name               String
+  professionalTitles String         @db.Text @map("professional_titles") // JSON array of string
+  typingTitles       String         @db.Text @map("typing_titles")       // JSON array of string
+  location           String
+  careerGoal         String         @map("career_goal")
+  email              String
+  phone              String
+  currentStatus      String         @map("current_status")
+  college            String
+  introText          String         @db.Text @map("intro_text")
+  aboutBio           String         @db.Text @map("about_bio")           // JSON array of string
+  github             String
+  linkedin           String
+  emailSocial        String         @map("email_social")
+  createdAt          DateTime       @default(now()) @map("created_at")
+  updatedAt          DateTime       @updatedAt @map("updated_at")
+  stats              PersonalStat[]
+
+  @@map("personal_info")
+}
+
+model PersonalStat {
+  id             String       @id @default(uuid())
+  personalInfoId String       @map("personal_info_id")
+  label          String
+  value          String
+  sublabel       String
+  iconName       String       @map("icon_name")
+  orderIndex     Int          @default(0) @map("order_index")
+  personalInfo   PersonalInfo @relation(fields: [personalInfoId], references: [id], onDelete: Cascade)
+
+  @@index([personalInfoId])
+  @@map("personal_stats")
+}
+
+model Education {
+  id          String   @id @default(uuid())
+  institution String
+  location    String
+  degree      String
+  period      String
+  status      String
+  grade       String
+  description String   @db.Text
+  icon        String
+  orderIndex  Int      @default(0) @map("order_index")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("education")
+}
+
+model SkillCategory {
+  id         String   @id @default(uuid())
+  name       String
+  orderIndex Int      @default(0) @map("order_index")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+  skills     Skill[]
+
+  @@map("skill_categories")
+}
+
+model Skill {
+  id          String        @id @default(uuid())
+  categoryId  String        @map("category_id")
+  name        String
+  proficiency Int
+  level       String        // 'Comfortable' | 'Currently Learning'
+  icon        String?
+  orderIndex  Int           @default(0) @map("order_index")
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+  category    SkillCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@index([categoryId])
+  @@map("skills")
+}
+
+model Project {
+  id              String   @id @default(uuid())
+  title           String
+  description     String   @db.Text
+  longDescription String?  @db.Text @map("long_description")
+  category        String   @db.Text // JSON string array: ["Prompt Engineering", "AI"]
+  technologies    String   @db.Text // JSON string array: ["Python", "Prompt Engineering"]
+  githubUrl       String   @map("github_url")
+  liveDemoUrl     String   @map("live_demo_url")
+  featured        Boolean  @default(false)
+  image           String   @db.Text
+  highlights      String?  @db.Text // JSON string array
+  orderIndex      Int      @default(0) @map("order_index")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@map("projects")
+}
+
+model JourneyStep {
+  id           String   @id @default(uuid())
+  step         Int      @unique
+  title        String
+  description  String   @db.Text
+  status       String   // 'Completed' | 'In Progress' | 'Upcoming Goal'
+  technologies String   @db.Text // JSON string array
+  icon         String
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@map("journey_steps")
+}
+
+model Experience {
+  id          String   @id @default(uuid())
+  title       String
+  status      String
+  description String   @db.Text
+  highlights  String   @db.Text // JSON string array
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("experiences")
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  subject   String
+  message   String   @db.Text
+  status    String   @default("unread") // 'unread' | 'read' | 'replied' | 'archived'
+  ipAddress String?  @map("ip_address")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("contact_messages")
+}
+
+model VisitorStat {
+  id            String   @id @default(uuid())
+  page          String   @unique @default("home")
+  visitCount    Int      @default(0) @map("visit_count")
+  lastVisitedAt DateTime @default(now()) @map("last_visited_at")
+
+  @@map("visitor_stats")
+}
